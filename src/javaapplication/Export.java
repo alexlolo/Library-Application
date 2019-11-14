@@ -1,6 +1,5 @@
 package javaapplication;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -18,16 +17,17 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
+import org.apache.poi.xwpf.usermodel.IBody;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTSectPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTText;
 
+@SuppressWarnings("unused")
 public class Export {
-
-	
 Export(ArrayList<Livre> books) throws IOException{	
-		
+    String path = "DemoBiblio.docx";
+	try(FileOutputStream out = new FileOutputStream(new File(path)))  {
 	      //Blank Document
 	      XWPFDocument document = new XWPFDocument(); 
 	      
@@ -104,8 +104,8 @@ Export(ArrayList<Livre> books) throws IOException{
 	     
    
 	      //Write the Document in file system
-          String path = "C:\\Users\\Val\\Desktop\\DemoBiblio.docx";
-		try (FileOutputStream out = new FileOutputStream(new File(path))) {
+
+
 			
 			XWPFParagraph paras = document.createParagraph();
 			XWPFRun run = paras.createRun();
@@ -121,13 +121,13 @@ Export(ArrayList<Livre> books) throws IOException{
 				run.addCarriageReturn();
 				run.addCarriageReturn();
 				run.addCarriageReturn();
-				
+			
 			}
 			
 			document.write(out);
 			new AlertWindow("Document written successully in " + path);	
 			out.close();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			new AlertWindow("Error while trying to write the document. Please try again later.");
 			e.printStackTrace();
