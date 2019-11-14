@@ -28,7 +28,6 @@ public class Export {
 	
 Export(ArrayList<Livre> books) throws IOException{	
 		
-		System.out.println("debut export ");
 	      //Blank Document
 	      XWPFDocument document = new XWPFDocument(); 
 	      
@@ -105,7 +104,7 @@ Export(ArrayList<Livre> books) throws IOException{
 	     
    
 	      //Write the Document in file system
-          String path = "C:\\\\Users\\\\Val\\\\Desktop\\\\DemoBiblio.docx";
+          String path = "C:\\Users\\Val\\Desktop\\DemoBiblio.docx";
 		try (FileOutputStream out = new FileOutputStream(new File(path))) {
 			
 			XWPFParagraph paras = document.createParagraph();
@@ -126,13 +125,14 @@ Export(ArrayList<Livre> books) throws IOException{
 			}
 			
 			document.write(out);
+			new AlertWindow("Document written successully in " + path);	
 			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			new AlertWindow("Error while trying to write the document. Please try again later.");
 			e.printStackTrace();
 		}
-	      new AlertWindow("Document written successully in " + path);	
+	      
 	}
 	
 }

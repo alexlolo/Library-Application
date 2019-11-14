@@ -36,7 +36,7 @@ public class FormWindow {
 		JLabel description = new JLabel("DESCRIPTION : ");
 		JLabel parution = new JLabel("PARUTION : ");
 		JLabel name = new JLabel("NOM : ");
-		JLabel rangée = new JLabel("RANGÉE : ");
+		JLabel rangée = new JLabel("RANGEE : ");
 		JLabel colonne = new JLabel("COLONNE : ");
 		JLabel img = new JLabel("IMAGE : ");
     	JLabel errorLabel = new JLabel();

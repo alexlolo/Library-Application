@@ -1,7 +1,6 @@
 package javaapplication;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +24,7 @@ import javax.swing.table.TableCellRenderer;
 public class MainWindow {
 	
 	public JTable table = new JTable(); 
-	public static Object[] columns = {"Titre","Auteur","Presentation","parution","colonne","rangée", "A Qui", "Type", "Image"};
+	public static Object[] columns = {"Titre","Auteur","Presentation","parution","colonne","rangee", "A Qui", "Type", "Image"};
 	
 	static DefaultTableModel model = new DefaultTableModel(columns,0);
 	
@@ -50,20 +49,13 @@ public class MainWindow {
 		    	}});
 	        
 		    JMenuItem Quitter = new JMenuItem(new QuitterAction("Quitter"));
-		    JMenuItem Info = new JMenuItem(new AboutAction("About"));		    
 		    JMenuBar menuBar = new JMenuBar();
 		    JMenu fichier = new JMenu("Fichier");
-		    JMenu About= new JMenu("About"); 
-		    
 		    JLabel text = new JLabel("Veuillez ouvrir un fichier XML pour commencer");
-		    
 		    text.setBounds(300, 70, 300, 300);
 		    fichier.add(Ouvrir);
 		    fichier.add(Quitter);   
-		    
-		    About.add(Info);	    
 		    menuBar.add(fichier);
-		    menuBar.add(About);	 
 		    
 		    frame.add(menuBar);
 		    frame.setJMenuBar(menuBar);
@@ -426,15 +418,8 @@ public class MainWindow {
         }
 
         public void actionPerformed(ActionEvent e){ 
-            JFrame frame = new JFrame();
-            frame.setTitle("About");
-            frame.setPreferredSize(new Dimension(875, 300));
-            frame.setLocation(100,100); 
-            frame.setLocationRelativeTo(null);
-            JLabel label = new JLabel("Nous sommes 3 étudiants en M1 M2i MSID-ILS sur le site de Cergy Saint Christophe : Alexandre LORIER, Florian MANDAR, et Valentin STOCKMAN.");
-            frame.add(label);
-            frame.pack();
-            frame.setVisible(true);
+        	new AlertWindow("Nous sommes 3 étudiants en M1 M2i MSID-ILS sur le site de Cergy Saint Christophe : Alexandre LORIER, Florian MANDAR, et Valentin STOCKMAN.");
+            
             } 
     }
 }

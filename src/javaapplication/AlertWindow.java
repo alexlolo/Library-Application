@@ -10,12 +10,13 @@ public class AlertWindow {
 	AlertWindow(String alert) {
 		JFrame frame3 = new JFrame("Erreur");
 		
-		frame3.setSize(600,200);
+		frame3.setSize(875,200);
 		frame3.setLayout(null);
 		JLabel errorMessage = new JLabel(alert);
 		JButton bouton2 = new JButton("OK");
-        errorMessage.setBounds(20, 20, 550, 50);
-        bouton2.setBounds(180,75,100,20);
+        errorMessage.setBounds(20, 20, 870, 50);
+        System.out.print(errorMessage.getWidth());
+        bouton2.setBounds(350,75,100,20);
         frame3.add(errorMessage);
         frame3.add(bouton2);
 	    frame3.setVisible(true);
