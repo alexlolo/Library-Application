@@ -1,7 +1,6 @@
+package javaapplication;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,9 +13,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class Edit {
+public class Save {
 	
-	public  Edit(ArrayList<Livre> newBooks){
+	public  Save(ArrayList<Livre> newBooks){
 		
 		   try {
 	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -26,7 +25,6 @@ public class Edit {
 	            Element racine = doc.createElement("bibliotheque");
 	            doc.appendChild(racine);
 	            
-	            System.out.println("Avant ");
 	            for (int i = 0; i < newBooks.size(); i++) {
 
 	                Element book = doc.createElement("livre");
@@ -65,23 +63,33 @@ public class Edit {
 	                range.appendChild(doc.createTextNode(Integer.toString(newBooks.get(i).getRange())));
 	                book.appendChild(range);
 	                
-	                System.out.println("Apres ");
+		            Element who = doc.createElement("whose");
+		            who.appendChild(doc.createTextNode(newBooks.get(i).getWho()));
+		            book.appendChild(who);
+		            
+		            Element type = doc.createElement("type");
+		            type.appendChild(doc.createTextNode(newBooks.get(i).getType()));
+		            book.appendChild(type);
+		            
+		            Element img = doc.createElement("urlImg");
+		            img.appendChild(doc.createTextNode(newBooks.get(i).getImg()));
+		            book.appendChild(img);
+		            
 
 	             // write the content into xml file
-	                TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	                Transformer transformer = transformerFactory.newTransformer();
-	                DOMSource source = new DOMSource(doc);
-	                StreamResult resultat = new StreamResult(new File("C:\\Users\\pc portable alex\\Downloads\\FichierTest.xml"));
-
-	                transformer.transform(source, resultat);
-	                System.out.println("ta race pd ");
+	                
 	            }
-	            
-
+	            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource source = new DOMSource(doc);
+                String path = "C:\\\\Users\\\\Val\\\\Desktop\\\\FichierTest.xml";
+                StreamResult resultat = new StreamResult(new File(path));
+                transformer.transform(source, resultat);
+	            new AlertWindow("XML Doc written successfully in " + path);
 	        } catch (ParserConfigurationException pce) {
-	            pce.printStackTrace();
-	        } catch (TransformerException tfe) {
-	            tfe.printStackTrace();
+	        	new AlertWindow("Error while trying to write the XML Document. Please retry later.");	        
+	        	} catch (TransformerException tfe) {
+		        	new AlertWindow("Error while trying to write the XML Document. Please retry later.");	        
 	        }
     }
 

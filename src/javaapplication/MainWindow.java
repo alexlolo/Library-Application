@@ -1,3 +1,4 @@
+package javaapplication;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -18,11 +19,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-public class FenetrePrincipal {
+public class MainWindow {
 	
 	public JTable table = new JTable(); 
 	public static Object[] columns = {"Titre","Auteur","Presentation","parution","colonne","rangée", "A Qui", "Type", "Image"};
@@ -32,7 +32,7 @@ public class FenetrePrincipal {
 	static int SelectRow = 0;
 	public ArrayList<Livre> books = new ArrayList<Livre>();
 	
-	FenetrePrincipal(){
+	MainWindow(){
 		
 		// create JFrame and JTable
 		 JFrame frame = new JFrame("Library Application");
@@ -77,7 +77,7 @@ public class FenetrePrincipal {
 	        frame.setVisible(true);	
 	}
 	
-	FenetrePrincipal(List<Bibliotheque.Livre>mesLivres){
+	MainWindow(List<Bibliotheque.Livre>mesLivres){
 		
 		 // create JFrame and JTable
 		JFrame frame = new JFrame("Library Application");
@@ -115,7 +115,7 @@ public class FenetrePrincipal {
         	model.addRow(data);
         }
 	        
-		 
+        
 	        
 	        JMenuItem Ouvrir = new JMenuItem("Ouvrir");
 		    Ouvrir.addActionListener(new ActionListener() {
@@ -132,10 +132,15 @@ public class FenetrePrincipal {
 		    JMenuItem Export = new JMenuItem("Export");
 		    Export.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent ev) {
-		    	frame.setVisible(false);
 		    		try {
 
 			    		for (int i= 0 ; i < model.getRowCount(); i++) {
+			    			String aQui = "";
+		    				if(model.getValueAt(i, 6) == null) {
+		    					aQui = "";
+		    				} else {
+		    					aQui = model.getValueAt(i, 6).toString();
+		    				}
 		   				 Livre monBook = new Livre(
 		   						model.getValueAt(i,0).toString(),
 		   						model.getValueAt(i,1).toString(),
@@ -143,7 +148,7 @@ public class FenetrePrincipal {
 		   						Integer.parseInt(model.getValueAt(i,3).toString()),
 		   						Integer.parseInt(model.getValueAt(i,4).toString()),
 		   						Integer.parseInt(model.getValueAt(i,5).toString()),
-		   						model.getValueAt(i, 6).toString(),
+		   						aQui,
 		   						model.getValueAt(i, 7).toString(),
 		   						model.getValueAt(i, 8).toString()
 		   						);
@@ -160,14 +165,17 @@ public class FenetrePrincipal {
 		    
 		    JMenuItem Sauvegarder = new JMenuItem("Sauvegarder");
 		    Sauvegarder.addActionListener(new ActionListener() {
-		    	public void actionPerformed(ActionEvent ev) {
-		    	frame.setVisible(false);
-		    	
+		    	public void actionPerformed(ActionEvent ev) {		    	
 		    		try {
 		    			DefaultTableModel modells = (DefaultTableModel) table.getModel();
 		
 		    			for(int i = 0 ; i < modells.getRowCount(); i++){
-		    				
+		    				String aQui = "";
+		    				if(modells.getValueAt(i,6) == null) {
+		    					aQui = "";
+		    				} else {
+		    					aQui = modells.getValueAt(i,6).toString();
+		    				}
 		   				 Livre monBook = new Livre(
 		   						 
 		   						modells.getValueAt(i,0).toString(),
@@ -176,14 +184,13 @@ public class FenetrePrincipal {
 		   						Integer.parseInt(modells.getValueAt(i,3).toString()),
 		   						Integer.parseInt(modells.getValueAt(i,4).toString()),
 		   						Integer.parseInt(modells.getValueAt(i,5).toString()),
-		   						modells.getValueAt(i,6).toString(),
+		   						aQui,
 		   						modells.getValueAt(i,7).toString(),
 		   						modells.getValueAt(i,8).toString()
-
 		   						 );
 		   				   books.add(monBook);
 		   			 }
-		    			new Edit(books);
+		    			new Save(books);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -191,14 +198,17 @@ public class FenetrePrincipal {
 		    	}});		    
 		    JMenuItem SauvegarderSous = new JMenuItem("SauvegarderSous");
 		    SauvegarderSous.addActionListener(new ActionListener() {
-		    	public void actionPerformed(ActionEvent ev) {
-		    	frame.setVisible(false);
-		    	
+		    	public void actionPerformed(ActionEvent ev) {		    	
 		    		try {
 		    			DefaultTableModel modells = (DefaultTableModel) table.getModel();
 		
 		    			for(int i = 0 ; i < modells.getRowCount(); i++){
-		    				
+		    				String aQui = "";
+		    				if(modells.getValueAt(i,6) == null) {
+		    					aQui = "";
+		    				} else {
+		    					aQui = modells.getValueAt(i,6).toString();
+		    				}
 		   				 Livre monBook = new Livre(
 		   						 
 		   					    modells.getValueAt(i,0).toString(),
@@ -207,13 +217,13 @@ public class FenetrePrincipal {
 		   						Integer.parseInt(modells.getValueAt(i,3).toString()),
 		   						Integer.parseInt(modells.getValueAt(i,4).toString()),
 		   						Integer.parseInt(modells.getValueAt(i,5).toString()),
-		   						modells.getValueAt(i,6).toString(),
+		   						aQui,
 		   						modells.getValueAt(i,7).toString(),
 		   						modells.getValueAt(i,8).toString()
 		   						 );
 		   				   books.add(monBook);
 		   			 }
-		    			new EditFile(books);
+		    			new SaveUnder(books);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -284,7 +294,7 @@ public class FenetrePrincipal {
 
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	new FenetreFormulaire(); 
+	            	new FormWindow("", "", "", "", "", "", "", "", ""); 
 	            }
 	        });
 	        
@@ -295,13 +305,13 @@ public class FenetrePrincipal {
 	            public void actionPerformed(ActionEvent e) {
 	            
 	                // i = the index of the selected row
-	                int i = table.getSelectedRow();
-	                if(i >= 0){
+	            	SelectRow = table.getSelectedRow();	               
+	            	if(SelectRow >= 0) {
 	                    // remove a row from jtable
-	                    model.removeRow(i);
+	                    model.removeRow(SelectRow);
 	                }
 	                else{
-	                    System.out.println("Delete Error");
+	            		 new AlertWindow("Veuillez sélectionnez un livre avant de le supprimer.");
 	                }
 	            }
 	        });
@@ -320,9 +330,18 @@ public class FenetrePrincipal {
 	        btnUpdate.addActionListener(new ActionListener(){
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	
-	                 SelectRow = table.getSelectedRow();
-	                 new FenetreFormulaire(model.getValueAt(SelectRow, 0).toString(), model.getValueAt(SelectRow, 1).toString(), model.getValueAt(SelectRow, 2).toString(), model.getValueAt(SelectRow, 3).toString(), model.getValueAt(SelectRow, 4).toString(), model.getValueAt(SelectRow, 5).toString(), model.getValueAt(SelectRow, 6).toString(), model.getValueAt(SelectRow, 8).toString());
+	            	SelectRow = table.getSelectedRow();
+	                 if(SelectRow >= 0) {
+	                	 String aQui = "";
+		    				if(model.getValueAt(SelectRow,6) == null) {
+		    					aQui = "";
+		    				} else {
+		    					aQui = model.getValueAt(SelectRow,6).toString();
+		    				}
+		                 new FormWindow(model.getValueAt(SelectRow, 0).toString(), model.getValueAt(SelectRow, 1).toString(), model.getValueAt(SelectRow, 2).toString(), model.getValueAt(SelectRow, 3).toString(), model.getValueAt(SelectRow, 4).toString(), model.getValueAt(SelectRow, 5).toString(),aQui,model.getValueAt(SelectRow, 7).toString(), model.getValueAt(SelectRow, 8).toString());
+	                 } else {
+	            		 new AlertWindow("Veuillez sélectionnez un livre avant de le modifier.");
+	                 }
 	            }
 	        });
 	        
@@ -335,7 +354,7 @@ public class FenetrePrincipal {
 
 	public static void main(String[] args){
         
-       new FenetrePrincipal();
+       new MainWindow();
        
 	}
 	
@@ -345,7 +364,6 @@ public class FenetrePrincipal {
 	}
 	
 	public static void ModificationTableau(Object[] row){
-		
 	       if(SelectRow >= 0) 
 	       {
 	          model.setValueAt(row[0].toString(), SelectRow, 0);
@@ -366,7 +384,12 @@ public class FenetrePrincipal {
 	
 	
 	public class QuitterAction extends AbstractAction {
-        public QuitterAction(String texte){
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public QuitterAction(String texte){
             super(texte);
         }
 
@@ -376,7 +399,12 @@ public class FenetrePrincipal {
     }
 	
 	public class EditAction extends AbstractAction {
-        public EditAction(String texte){
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public EditAction(String texte){
             super(texte);
         }
 
@@ -388,7 +416,12 @@ public class FenetrePrincipal {
 	
 	
 	public class AboutAction extends AbstractAction {
-        public AboutAction(String texte){
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public AboutAction(String texte){
             super(texte);
         }
 

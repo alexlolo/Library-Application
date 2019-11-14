@@ -1,3 +1,4 @@
+package javaapplication;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -89,8 +90,8 @@ Export(ArrayList<Livre> books) throws IOException{
 
           //create second row 
           for (int i = 0; i < books.size(); i++) {
-              if (books.get(i).getType().compareTo("Prété") == 0
-                      || books.get(i).getType().compareTo("Prêt") == 0) {
+              if (books.get(i).getType().compareTo("Prete") == 0
+                      || books.get(i).getType().compareTo("Pret") == 0) {
                   XWPFTableRow tableRowTwo = table.createRow();
                   tableRowTwo.setHeight(1000);
                   tableRowTwo.getCell(0).setText(books.get(i).getTitre());
@@ -104,7 +105,8 @@ Export(ArrayList<Livre> books) throws IOException{
 	     
    
 	      //Write the Document in file system
-		try (FileOutputStream out = new FileOutputStream( new File("C:\\Users\\pc portable alex\\Documents\\Itescia\\DemoBiblio.docx"))) {
+          String path = "C:\\\\Users\\\\Val\\\\Desktop\\\\DemoBiblio.docx";
+		try (FileOutputStream out = new FileOutputStream(new File(path))) {
 			
 			XWPFParagraph paras = document.createParagraph();
 			XWPFRun run = paras.createRun();
@@ -127,9 +129,10 @@ Export(ArrayList<Livre> books) throws IOException{
 			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			new AlertWindow("Error while trying to write the document. Please try again later.");
 			e.printStackTrace();
 		}
-	      System.out.println("createdocument.docx written successully");	
+	      new AlertWindow("Document written successully in " + path);	
 	}
 	
 }

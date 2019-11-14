@@ -1,7 +1,6 @@
+package javaapplication;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,9 +18,9 @@ import org.w3c.dom.Element;
 
 
 
-public class EditFile {
+public class SaveUnder {
 	
-	EditFile(ArrayList<Livre> newBooks){
+	SaveUnder(ArrayList<Livre> newBooks){
 	
 		File chemin = null ; 
 		
@@ -44,10 +43,7 @@ public class EditFile {
 	
 	        Document doc = docBuilder.newDocument();
 	        Element racine = doc.createElement("bibliotheque");
-	        doc.appendChild(racine);
-	        
-	        System.out.println("Creation File XML");
-	        
+	        doc.appendChild(racine);	        
 	        for (int i = 0; i < newBooks.size(); i++) {
 	
 	            Element book = doc.createElement("livre");
@@ -93,21 +89,20 @@ public class EditFile {
 	           
 	
 	            // write the content into xml file
-	            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	            Transformer transformer = transformerFactory.newTransformer();
-	            DOMSource source = new DOMSource(doc);
-	            StreamResult resultat = new StreamResult(new File(chemin.toString()+".xml"));
-	
-	            transformer.transform(source, resultat);
+	            
 	          
 	        }
-	        
-	
+	        String path = chemin.toString()+".xml";
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult resultat = new StreamResult(new File(path));
+            transformer.transform(source, resultat);
+            new AlertWindow("XML Document writed successfully in " + path);
 	    } catch (ParserConfigurationException pce) {
-	        pce.printStackTrace();
+        	new AlertWindow("Error while trying to write the XML Document. Please retry later.");	        
 	    } catch (TransformerException tfe) {
-	        tfe.printStackTrace();
+        	new AlertWindow("Error while trying to write the XML Document. Please retry later.");	        
 	    }
-	    System.out.println("Finishing XML ");
 	}
 }
