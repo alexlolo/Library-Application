@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 public class AlertWindow {
 	AlertWindow(String alert) {
-		JFrame frame3 = new JFrame("Erreur");
+		JFrame frame3 = new JFrame("Alerte");
 		
 		frame3.setSize(875,200);
 		frame3.setLayout(null);
