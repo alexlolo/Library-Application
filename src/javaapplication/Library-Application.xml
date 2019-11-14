@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project src with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/Cours/m2i/M1/Programmation avancée/Library-Application"/>
+    <property name="dir.jarfile" value="${dir.buildfile}/Cours/m2i/M1/DevOPS/ProjetMarathon"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/LibraryApplication.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="javaapplication.MainWindow"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ xmlbeans-3.1.0.jar dom4j-1.6.1.jar commons-compress-1.18.jar poi-ooxml-schemas-4.1.1.jar poi-ooxml-4.1.1.jar poi-4.1.1.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.workspace}/src"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="xmlbeans-3.1.0.jar"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="dom4j-1.6.1.jar"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="commons-compress-1.18.jar"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="poi-ooxml-schemas-4.1.1.jar"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="poi-ooxml-4.1.1.jar"/>
+            <zipfileset dir="C:/Users/Val/Downloads" includes="poi-4.1.1.jar"/>
+        </jar>
+    </target>
+</project>
