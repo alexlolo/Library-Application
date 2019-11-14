@@ -150,10 +150,10 @@ public class FormWindow {
                 	}
                 	else if(Integer.parseInt(textParution.getText()) > 2019 || Integer.parseInt(textParution.getText()) < 0) {
                 		 new AlertWindow("La date de parution doit être comprise entre 0 et 2019. Veuillez la modifier.");
-                	}else if(Integer.parseInt(textRangée.getText()) < 0 || Integer.parseInt(textRangée.getText()) > 10) {
+                	}else if(Integer.parseInt(textRangée.getText()) < 0 || Integer.parseInt(textRangée.getText()) > 5) {
                     		 new AlertWindow("La rangée doit être comprise entre 0 et 10 inclus.");
-                	}else if(Integer.parseInt(textColonne.getText()) < 0) {
-           			 new AlertWindow("La colonne doit être supérieure à 0.");
+                	}else if(Integer.parseInt(textColonne.getText()) < 0 || Integer.parseInt(textColonne.getText()) > 7) {
+           			 new AlertWindow("La colonne doit être comprise entre 0 à 7 inclus.");
                 	} else if(!textImage.getText().matches("^(http|https)://.*$")) {
                 		new AlertWindow("L'url doit commencer par 'http://' ou 'https://'. Veuillez la modifier.");
                 	} else {
