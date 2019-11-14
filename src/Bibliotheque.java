@@ -142,14 +142,17 @@ public class Bibliotheque {
         "presentation",
         "parution",
         "colonne",
-        "rangee"
+        "rangee",
+        "whose",
+        "type",
+        "urlImg"
     })
     public static class Livre {
 
         @XmlElement(required = true)
         protected String titre;
         @XmlElement(required = true)
-        protected Bibliotheque.Livre.Auteur auteur;
+        protected String auteur;
         @XmlElement(required = true)
         protected String presentation;
         @XmlSchemaType(name = "unsignedShort")
@@ -158,6 +161,12 @@ public class Bibliotheque {
         protected short colonne;
         @XmlSchemaType(name = "unsignedByte")
         protected short rangee;
+        @XmlElement(required = true)
+        protected String whose;
+        @XmlElement(required = true)
+        protected String type;
+        @XmlElement(required = true)
+        protected String urlImg;
 
         /**
          * Obtient la valeur de la propriété titre.
@@ -191,7 +200,7 @@ public class Bibliotheque {
          *     {@link Bibliotheque.Livre.Auteur }
          *     
          */
-        public Bibliotheque.Livre.Auteur getAuteur() {
+        public String getAuteur() {
             return auteur;
         }
 
@@ -203,7 +212,7 @@ public class Bibliotheque {
          *     {@link Bibliotheque.Livre.Auteur }
          *     
          */
-        public void setAuteur(Bibliotheque.Livre.Auteur value) {
+        public void setAuteur(String value) {
             this.auteur = value;
         }
 
@@ -230,6 +239,8 @@ public class Bibliotheque {
         public void setPresentation(String value) {
             this.presentation = value;
         }
+        
+        
 
         /**
          * Obtient la valeur de la propriété parution.
@@ -278,8 +289,54 @@ public class Bibliotheque {
         public void setRangee(short value) {
             this.rangee = value;
         }
+        public String getAQui() {
+            return whose;
+        }
 
+        /**
+         * Définit la valeur de la propriété presentation.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setAqui(String value) {
+            this.whose = value;
+        }
+        
+        public String getType() {
+            return type;
+        }
 
+        /**
+         * Définit la valeur de la propriété presentation.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setType(String value) {
+            this.type = value;
+        }
+
+        
+        public String getImage() {
+            return urlImg;
+        }
+
+        /**
+         * Définit la valeur de la propriété presentation.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setImage(String value) {
+            this.urlImg = value;
+        }
         /**
          * <p>Classe Java pour anonymous complex type.
          * 

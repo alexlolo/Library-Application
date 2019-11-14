@@ -46,7 +46,8 @@ public class EditFile {
 	        Element racine = doc.createElement("bibliotheque");
 	        doc.appendChild(racine);
 	        
-	        System.out.println("Avant ");
+	        System.out.println("Creation File XML");
+	        
 	        for (int i = 0; i < newBooks.size(); i++) {
 	
 	            Element book = doc.createElement("livre");
@@ -57,17 +58,9 @@ public class EditFile {
 	            book.appendChild(title);
 	
 	            Element editor = doc.createElement("auteur");
-	            
-	
-	            Element nom = doc.createElement("Nom");
 	            editor.appendChild(doc.createTextNode(newBooks.get(i).getAuteur()));                
-	            editor.appendChild(nom);
-	            
-	            Element prenom = doc.createElement("Prenom");
-	            editor.appendChild(doc.createTextNode(newBooks.get(i).getAuteur()));                
-	            editor.appendChild(prenom);
-	            
 	            book.appendChild(editor);
+	           
 	            
 	            Element presentation = doc.createElement("presentation");
 	            presentation.appendChild(doc.createTextNode(newBooks.get(i).getPresentation()));
@@ -85,7 +78,19 @@ public class EditFile {
 	            range.appendChild(doc.createTextNode(Integer.toString(newBooks.get(i).getRange())));
 	            book.appendChild(range);
 	            
-	            System.out.println("Apres ");
+	            Element who = doc.createElement("whose");
+	            who.appendChild(doc.createTextNode(newBooks.get(i).getWho()));
+	            book.appendChild(who);
+	            
+	            Element type = doc.createElement("type");
+	            type.appendChild(doc.createTextNode(newBooks.get(i).getType()));
+	            book.appendChild(type);
+	            
+	            Element img = doc.createElement("urlImg");
+	            img.appendChild(doc.createTextNode(newBooks.get(i).getImg()));
+	            book.appendChild(img);
+	            
+	           
 	
 	            // write the content into xml file
 	            TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -94,7 +99,7 @@ public class EditFile {
 	            StreamResult resultat = new StreamResult(new File(chemin.toString()+".xml"));
 	
 	            transformer.transform(source, resultat);
-	            System.out.println("ta race pd  ");
+	          
 	        }
 	        
 	
@@ -103,5 +108,6 @@ public class EditFile {
 	    } catch (TransformerException tfe) {
 	        tfe.printStackTrace();
 	    }
+	    System.out.println("Finishing XML ");
 	}
 }

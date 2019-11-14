@@ -21,7 +21,7 @@ public class Ouvrir {
 	
 	Ouvrir(){
 		
-		ArrayList<Livre> mesLivres = new ArrayList<Livre>();
+ArrayList<Livre> mesLivres = new ArrayList<Livre>();
 		
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getDefaultDirectory());
         FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
