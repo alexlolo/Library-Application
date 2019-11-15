@@ -52,7 +52,7 @@ public class FormWindow {
 		
 		if(typeLivre.compareTo("Pret") == 0) {
 			textType.setSelectedIndex(1);
-		} else if(typeLivre.compareTo("Prete") == 1) {
+		} else if(typeLivre.compareTo("Prete") == 0) {
 			textType.setSelectedIndex(2);
 		} else {
 			textAQui.setEnabled(false);

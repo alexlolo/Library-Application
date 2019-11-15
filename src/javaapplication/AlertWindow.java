@@ -15,7 +15,6 @@ public class AlertWindow {
 		JLabel errorMessage = new JLabel(alert);
 		JButton bouton2 = new JButton("OK");
         errorMessage.setBounds(20, 20, 870, 50);
-        System.out.print(errorMessage.getWidth());
         bouton2.setBounds(350,75,100,20);
         frame3.add(errorMessage);
         frame3.add(bouton2);
