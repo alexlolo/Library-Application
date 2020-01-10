@@ -344,12 +344,6 @@ public class MainWindow {
 	}
 	
 
-	public static void main(String[] args){
-        
-       new MainWindow();
-       
-	}
-	
 	public static void AddElementTableau(Object[] row){
 
         model.addRow(row);
