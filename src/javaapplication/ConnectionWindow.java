@@ -34,8 +34,28 @@ public class ConnectionWindow {
 	    bouton2.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+            	String txtpassword = password.getText();
+                String txtuser = login.getText();
+
+                if (txtuser.contains("alex") && txtpassword.contains("lorier"))
+                {
+                    login.setText(null);
+                    password.setText(null);
+
+                    // verification pour savoir si admin ou user 
+
+                    frame.dispose();
+                    new AdminWindow();
+                }
+
+                else 
+                {
+                    new AlertWindow("Connexion invalide !");
+                    login.setText(null);
+                    password.setText(null);
+                }
             	frame.dispose();
-            	new MainWindow();
+            	new UserWindow();
             }
 	});
 	}

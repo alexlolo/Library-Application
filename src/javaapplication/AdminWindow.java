@@ -21,7 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-public class MainWindow {
+public class AdminWindow {
 	
 	public JTable table = new JTable(); 
 	public static Object[] columns = {"Titre","Auteur","Presentation","parution","colonne","rangee", "A Qui", "Type", "Image"};
@@ -31,7 +31,7 @@ public class MainWindow {
 	static int SelectRow = 0;
 	public ArrayList<Livre> books = new ArrayList<Livre>();
 	
-	MainWindow(){
+	AdminWindow(){
 		
 		// create JFrame and JTable
 		 JFrame frame = new JFrame("Library Application");
@@ -69,7 +69,7 @@ public class MainWindow {
 	        frame.setVisible(true);	
 	}
 	
-	MainWindow(List<Bibliotheque.Livre>mesLivres){
+	AdminWindow(List<Bibliotheque.Livre>mesLivres){
 		
 		 // create JFrame and JTable
 		JFrame frame = new JFrame("Library Application");

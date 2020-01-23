@@ -34,7 +34,7 @@ public class Ouvrir {
 		          } catch (JAXBException e) {
 		              e.printStackTrace();
 		          }
-		    new MainWindow(bibliotheque.getLivre());
+		    new UserWindow(bibliotheque.getLivre());
 		}
 	}
 	

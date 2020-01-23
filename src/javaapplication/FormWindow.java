@@ -167,9 +167,9 @@ public class FormWindow {
                          row[7] = String.valueOf(textType.getSelectedItem());
                          row[8] = textImage.getText();
                          if(titre.equals("")) {
-                        	 MainWindow.AddElementTableau(row);
+                        	 AdminWindow.AddElementTableau(row);
                          } else {
-                             MainWindow.ModificationTableau(row);
+                             AdminWindow.ModificationTableau(row);
                          }
                          frame2.dispose();
                 	}
